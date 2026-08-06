@@ -1,11 +1,10 @@
-import aboutTourImage from "../images/about-honolulu-glide-tour.png";
+import aboutTourImage from "../images/IMG_3589.jpeg";
 
 export const site = {
-  businessName: "Honolulu Glide Tours",
-  eyebrow: "Small-group Honolulu rides with beach-day energy",
-  tagline: "Cruise from city streets to ocean views with a local guide, easy pace, and plenty of aloha.",
-  phone: "(808) 555-0199",
-  smsNumber: "+18085550199",
+  businessName: "Aloha Segway Tours",
+  eyebrow: "Fun Private and Semiprivate tours of Honolulu",
+  tagline: "Glide around Honolulu with a local guide and see all the beautiful sights!",
+  phone: "(808) 866-3120",
   email: "timo.budow@gmail.com",
   fareHarborUrl: "https://fareharbor.com/sidewalksurfingtours/",
   instagramUrl: "https://instagram.com/",

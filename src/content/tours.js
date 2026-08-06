@@ -1,15 +1,15 @@
-import alaMoanaTourImage from "../images/tour-ala-moana.png";
-import diamondHeadTourImage from "../images/tour-diamond-head.png";
-import historicDowntownTourImage from "../images/tour-historic-downtown.png";
+import alaMoanaTourImage from "../images/IMG_2742.jpeg";
+import diamondHeadTourImage from "../images/IMG_3597.jpeg";
+import historicDowntownTourImage from "../images/IMG_3586.jpeg";
 
 export const tours = [
   {
     id: "diamond-head",
     fareHarborItemId: "163732",
-    name: "Scenic Diamond Head",
+    name: "Diamond Head Area Tour",
     area: "Crater views and coastal air",
     duration: "2 hours",
-    price: "$155.70",
+    price: "$149",
     pace: "Moderate",
     image: diamondHeadTourImage,
     summary:
@@ -25,10 +25,10 @@ export const tours = [
   {
     id: "historic-downtown",
     fareHarborItemId: "downtown-placeholder",
-    name: "Historic Downtown",
-    area: "Royal history, civic landmarks, and city streets",
-    duration: "90 minutes",
-    price: "$105.70",
+    name: "Historic Downtown & Wall Art Tour",
+    area: "Glide Through Downtown Streets",
+    duration: "2 Hours",
+    price: "$149",
     pace: "Easy",
     image: historicDowntownTourImage,
     summary:
@@ -44,10 +44,10 @@ export const tours = [
   {
     id: "magic-island",
     fareHarborItemId: "131265",
-    name: "Magic Island & Ala Moana",
+    name: "Magic Island & Ala Moana Tour",
     area: "Park paths, ocean air, and skyline views",
     duration: "2 hours",
-    price: "$155.70",
+    price: "$149",
     pace: "Easy",
     image: alaMoanaTourImage,
     summary:

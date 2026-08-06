@@ -21,7 +21,7 @@ import {
 import { site } from "./content/site";
 import { tours } from "./content/tours";
 import { gallery } from "./content/gallery";
-import { reviews } from "./content/reviews";
+import heroPostcardImage from "./images/IMG_3591.jpeg";
 import "./styles.css";
 
 export function App() {
@@ -38,7 +38,6 @@ export function App() {
       />
       <About />
       <Gallery />
-      <Reviews />
       <Contact />
       <Footer />
     </main>
@@ -59,7 +58,6 @@ function Hero() {
           <a href="#tours">Tours</a>
           <a href="#about">About</a>
           <a href="#gallery">Gallery</a>
-          <a href="#reviews">Reviews</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -74,69 +72,17 @@ function Hero() {
               <CalendarDays aria-hidden="true" />
               <span>Book on FareHarbor</span>
             </a>
-            <a className="button button--glass" href={`sms:${site.smsNumber}`}>
-              <MessageCircle aria-hidden="true" />
-              <span>Text the guide</span>
-            </a>
           </div>
         </div>
-        <HeroPostcard />
+        <figure className="hero-postcard">
+          <img
+            src={heroPostcardImage}
+            alt="Segway tour guests posing in front of Diamond Head"
+          />
+        </figure>
       </div>
 
-      <div className="hero__dock" aria-label="Tour promises">
-        <div>
-          <Clock3 aria-hidden="true" />
-          <span>90 minute and 2 hour rides</span>
-        </div>
-        <div>
-          <Mountain aria-hidden="true" />
-          <span>Three Honolulu routes</span>
-        </div>
-        <div>
-          <ShieldAlert aria-hidden="true" />
-          <span>Safety notes before you book</span>
-        </div>
-      </div>
     </section>
-  );
-}
-
-function HeroPostcard() {
-  return (
-    <div className="hero-postcard" aria-hidden="true">
-      <svg viewBox="0 0 420 320">
-        <defs>
-          <linearGradient id="sunset" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ffb86b" />
-            <stop offset="55%" stopColor="#ff6f61" />
-            <stop offset="100%" stopColor="#2dd4bf" />
-          </linearGradient>
-          <linearGradient id="ocean" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#0ea5a4" />
-            <stop offset="100%" stopColor="#60a5fa" />
-          </linearGradient>
-        </defs>
-        <rect width="420" height="320" rx="24" fill="#fff8ed" />
-        <circle cx="318" cy="86" r="54" fill="url(#sunset)" />
-        <path d="M0 150 C76 126 126 172 205 146 C270 124 330 130 420 104 V320 H0 Z" fill="#ffe6b8" />
-        <path d="M0 190 C58 174 124 212 190 194 C262 174 336 198 420 178 V320 H0 Z" fill="url(#ocean)" opacity="0.9" />
-        <path d="M0 222 C64 210 122 236 190 222 C260 208 334 228 420 214" fill="none" stroke="#fff8ed" strokeWidth="7" strokeLinecap="round" opacity="0.75" />
-        <path d="M78 224 C128 204 178 204 230 224" fill="none" stroke="#f7c873" strokeWidth="10" strokeLinecap="round" />
-        <path d="M88 82 C48 86 38 128 34 174" fill="none" stroke="#5b3b27" strokeWidth="10" strokeLinecap="round" />
-        <path d="M90 82 C122 54 154 52 180 78 C140 76 118 86 96 106 Z" fill="#0f766e" />
-        <path d="M88 82 C82 42 104 22 142 18 C118 44 105 66 98 96 Z" fill="#14b8a6" />
-        <path d="M88 84 C54 50 36 48 16 60 C48 72 68 86 84 112 Z" fill="#0d9488" />
-        <path d="M286 214 H350" stroke="#34221a" strokeWidth="8" strokeLinecap="round" />
-        <circle cx="296" cy="224" r="10" fill="#34221a" />
-        <circle cx="344" cy="224" r="10" fill="#34221a" />
-        <path d="M320 210 V164" stroke="#34221a" strokeWidth="8" strokeLinecap="round" />
-        <circle cx="318" cy="148" r="13" fill="#8b4a2f" />
-        <path d="M304 168 C320 186 338 182 354 164" fill="none" stroke="#ff6f61" strokeWidth="9" strokeLinecap="round" />
-        <path d="M316 160 C300 178 294 198 288 216" fill="none" stroke="#0f766e" strokeWidth="8" strokeLinecap="round" />
-        <path d="M324 160 C340 178 350 194 360 210" fill="none" stroke="#0f766e" strokeWidth="8" strokeLinecap="round" />
-        <path d="M298 144 C308 126 330 126 340 142" fill="none" stroke="#facc15" strokeWidth="6" strokeLinecap="round" />
-      </svg>
-    </div>
   );
 }
 
@@ -145,10 +91,9 @@ function TourPicker({ activeTour, onSelectTour, selectedTour }) {
     <section className="section section--tours" id="tours">
       <div className="section__heading">
         <p className="eyebrow">Pick your route</p>
-        <h2>Choose your Honolulu mood.</h2>
+        <h2>Choose one of these tours...</h2>
         <p>
-          Go scenic, lively, or mellow. Each route includes safety coaching, local color, and a few
-          photo-worthy pauses.
+          * Each tour includes a lesson in riding a Segway safely.
         </p>
       </div>
 
@@ -315,36 +260,6 @@ function Gallery() {
   );
 }
 
-function Reviews() {
-  return (
-    <section className="section reviews" id="reviews">
-      <div className="section__heading">
-        <p className="eyebrow">Guest notes</p>
-        <h2>Easy rides, big grins.</h2>
-      </div>
-      <div className="reviews__grid">
-        {reviews.map((review) => (
-          <blockquote key={review.name}>
-            <div className="stars" aria-label="Five star review">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <Star key={index} aria-hidden="true" />
-              ))}
-            </div>
-            <p>{review.quote}</p>
-            <footer>
-              <strong>{review.name}</strong>
-              <span>{review.meta}</span>
-            </footer>
-          </blockquote>
-        ))}
-      </div>
-      <a className="button button--secondary" href={site.reviewSourceUrl}>
-        <ArrowRight aria-hidden="true" />
-        <span>See booking reviews</span>
-      </a>
-    </section>
-  );
-}
 
 function Contact() {
   return (
