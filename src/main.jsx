@@ -16,12 +16,12 @@ import {
   Phone,
   ShieldAlert,
   Star,
-  Waves,
 } from "lucide-react";
 import { site } from "./content/site";
 import { tours } from "./content/tours";
 import { gallery } from "./content/gallery";
 import heroPostcardImage from "./images/IMG_3591.jpeg";
+import logoImage from "./images/IMG_3455.jpeg";
 import "./styles.css";
 
 export function App() {
@@ -51,8 +51,7 @@ function Hero() {
       <div className="hero__shade" />
       <nav className="nav" aria-label="Primary navigation">
         <a className="nav__brand" href="#top">
-          <Waves aria-hidden="true" />
-          <span>{site.businessName}</span>
+          <img src={logoImage} alt={site.businessName} />
         </a>
         <div className="nav__links">
           <a href="#tours">Tours</a>
@@ -152,8 +151,7 @@ function TourDetails({ tour }) {
 
         <div className="info-grid">
           <InfoList title="Highlights" items={tour.highlights} />
-          <InfoList title="Bring" items={tour.bring} />
-          <InfoList title="Route Hazards" items={tour.hazards} tone="warning" />
+          <InfoList title="What to Bring" items={tour.bring} />
         </div>
 
         <MeetingPointMap tour={tour} />
