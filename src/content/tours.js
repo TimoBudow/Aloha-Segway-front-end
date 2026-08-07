@@ -1,6 +1,7 @@
 import alaMoanaTourImage from "../images/IMG_2742.jpeg";
 import diamondHeadTourImage from "../images/IMG_3597.jpeg";
 import historicDowntownTourImage from "../images/IMG_3586.jpeg";
+import downtownMeetingImage from "../images/IMG_3598.jpeg";
 
 export const tours = [
   {
@@ -15,7 +16,6 @@ export const tours = [
       "Explore the area around Diamond Head Crater, including beautiful parks and scenic ocean views.",
     details:
       "Best for riders who want the postcard side of Honolulu: ocean light, crater silhouettes, and enough movement to feel like a proper outing.",
-    meetingPoint: "Honolulu Zoo",
     meetingPointQuery: "Honolulu Zoo, 151 Kapahulu Ave, Honolulu, HI",
     bring: ["Comfortable shoes", "Water", "Helmets Provided"],
     highlights: ["Diamond Head Crater", "Ocean Views", "Neighborhood streets", "Kapiolani Park", "Leahi Beach Park", "Makalei Beach Park"],
@@ -27,14 +27,15 @@ export const tours = [
     area: "",
     duration: "2 Hours",
     price: "$149",
-    pace: "Easy",
     image: historicDowntownTourImage,
     summary:
-      "A slower city route through Honolulu's historic core, with landmark stops and stories tucked between downtown streets.",
+      "See all the historic landmarks in two hours.",
     details:
-      "Best for guests who want culture and context: royal history, civic buildings, shaded streets, and a calmer look at the city beyond the beach.",
-    meetingPoint: "Near Iolani Palace",
-    meetingPointQuery: "Iolani Palace, 364 S King St, Honolulu, HI",
+      "",
+    meetingPointQuery: "1011 Ala Moana Blvd, Honolulu, HI 96814",
+    meetingImage: downtownMeetingImage,
+    meetingImageAlt: "Aloha Segway Tours Segways lined up beneath the Honolulu Food Trucks sign",
+    meetingImageCaption: "Look for the Honolulu Food Trucks sign and our lined-up Segways.",
     bring: ["Closed-toe shoes", "Water", "Hat", "Phone/camera"],
     hazards: ["Curbs", "Street crossings", "Uneven pavement", "Downtown traffic"],
     highlights: ["Historic landmarks", "Civic buildings", "Shaded city streets"],
@@ -46,13 +47,11 @@ export const tours = [
     area: "",
     duration: "2 hours",
     price: "$149",
-    pace: "Easy",
     image: alaMoanaTourImage,
     summary:
       "A relaxed glide around Ala Moana and Magic Island with open park space, ocean views, and skyline photo stops.",
     details:
       "A good fit for first-timers and mixed groups: calmer paths, wide views, and an easygoing route that still feels unmistakably Honolulu.",
-    meetingPoint: "Kewalo Basin Harbor",
     meetingPointQuery: "Kewalo Basin Harbor, Honolulu, HI",
     bring: ["Closed-toe shoes", "Hat", "Water", "Comfortable clothes"],
     hazards: ["Shared park paths", "Pedestrians", "Uneven pavement", "Wet surfaces near the water"],

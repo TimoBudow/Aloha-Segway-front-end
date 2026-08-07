@@ -21,6 +21,7 @@ import { site } from "./content/site";
 import { tours } from "./content/tours";
 import { gallery } from "./content/gallery";
 import heroPostcardImage from "./images/IMG_3591.jpeg";
+import heroPostcardImageTwo from "./images/IMG_3597.jpeg";
 import logoImage from "./images/IMG_3455.jpeg";
 import "./styles.css";
 
@@ -64,7 +65,11 @@ function Hero() {
       <div className="hero__content">
         <div>
           <p className="eyebrow">{site.eyebrow}</p>
-          <h1>{site.businessName}</h1>
+          <h1 aria-label={site.businessName}>
+            {site.businessName.split(" ").map((word) => (
+              <span key={word}>{word}</span>
+            ))}
+          </h1>
           <p>{site.tagline}</p>
           <div className="hero__actions">
             <a className="button button--primary" href={site.fareHarborUrl}>
@@ -73,12 +78,28 @@ function Hero() {
             </a>
           </div>
         </div>
-        <figure className="hero-postcard">
-          <img
-            src={heroPostcardImage}
-            alt="Segway tour guests posing in front of Diamond Head"
-          />
-        </figure>
+        <div className="hero-postcards" aria-label="Highlights from recent Aloha Segway tours">
+          <figure className="hero-postcard hero-postcard--downtown">
+            <img
+              src={heroPostcardImage}
+              alt="Segway tour guests posing in front of Aloha Tower"
+            />
+            <figcaption>
+              <span>Wish you were here!</span>
+              <small>Aloha Tower</small>
+            </figcaption>
+          </figure>
+          <figure className="hero-postcard hero-postcard--diamond-head">
+            <img
+              src={heroPostcardImageTwo}
+              alt="Segway tour guests with Diamond Head in the background"
+            />
+            <figcaption>
+              <span>Greetings from Honolulu</span>
+              <small>Diamond Head</small>
+            </figcaption>
+          </figure>
+        </div>
       </div>
 
     </section>
@@ -139,14 +160,6 @@ function TourDetails({ tour }) {
             <Clock3 aria-hidden="true" />
             {tour.duration}
           </span>
-          <span>
-            <Check aria-hidden="true" />
-            {tour.pace}
-          </span>
-          <span>
-            <MapPin aria-hidden="true" />
-            {tour.meetingPoint}
-          </span>
         </div>
 
         <div className="info-grid">
@@ -173,15 +186,16 @@ function TourDetails({ tour }) {
 
 function MeetingPointMap({ tour }) {
   const query = encodeURIComponent(tour.meetingPointQuery);
-  const mapSrc = `https://maps.google.com/maps?q=${query}&z=15&output=embed`;
+  const mapSrc = `https://maps.google.com/maps?q=${query}&z=17&output=embed`;
   const mapUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
+  const meetingPoint = tour.meetingPoint ?? tour.meetingPointQuery;
 
   return (
     <div className="meeting-map">
       <div className="meeting-map__heading">
         <div>
           <h4>Meeting Point</h4>
-          <p>{tour.meetingPoint}</p>
+          <p>{meetingPoint}</p>
         </div>
         <a href={mapUrl} target="_blank" rel="noreferrer">
           <MapPin aria-hidden="true" />
@@ -194,6 +208,15 @@ function MeetingPointMap({ tour }) {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       />
+      {tour.meetingImage && (
+        <figure className="meeting-map__landmark">
+          <img src={tour.meetingImage} alt={tour.meetingImageAlt} />
+          <figcaption>
+            <MapPin aria-hidden="true" />
+            <span>{tour.meetingImageCaption}</span>
+          </figcaption>
+        </figure>
+      )}
     </div>
   );
 }
@@ -218,16 +241,13 @@ function About() {
   return (
     <section className="section about" id="about">
       <div className="about__copy">
-        <p className="eyebrow">About the ride</p>
-        <h2>Local, relaxed, and serious about keeping people upright.</h2>
+        <p className="eyebrow">Why a Segway tour?</p>
+        <h2>Skip the traffic and the hassle of parking. See everything up close on a Segway!</h2>
         <p>
-          This is the opposite of a packed tour bus. Small groups, practical coaching, and a guide
-          who knows when to point out a landmark and when to slow the pace for a tricky curb cut.
+          Different from a crowded tour bus, see the sights in the cool breeze and learn about 
+          Hawaiian history and culture.
         </p>
-        <p>
-          The vibe is aloha shirt and slippers, but the safety talk is real: Honolulu has traffic,
-          hills, tourists, rain-slick pavement, and the occasional surprise edge in the sidewalk.
-        </p>
+
       </div>
       <div className="about__image">
         <img src={site.aboutImage} alt="Honolulu coastline and city atmosphere" />
