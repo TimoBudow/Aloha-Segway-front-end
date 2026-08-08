@@ -206,9 +206,10 @@ h4 {
 .hero__content p:not(.eyebrow) {
   max-width: 650px;
   margin: 18px 0 0;
-  color: rgba(255, 250, 240, 0.92);
+  color: #fff1bd;
   font-size: clamp(1.1rem, 2.2vw, 1.45rem);
   line-height: 1.55;
+  text-shadow: 0 3px 16px rgba(10, 46, 55, 0.56);
 }
 
 .hero-postcards {
@@ -436,6 +437,19 @@ h4 {
   object-fit: cover;
 }
 
+@media (min-width: 921px) {
+  .tour-detail__media {
+    min-height: 0;
+    align-self: start;
+    background: transparent;
+  }
+
+  .tour-detail__media img {
+    height: auto;
+    object-fit: contain;
+  }
+}
+
 .tour-detail__badge {
   position: absolute;
   left: 18px;
@@ -459,6 +473,23 @@ h4 {
   box-shadow: 0 20px 70px rgba(66, 44, 34, 0.08);
 }
 
+.tour-detail__extras {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(20px, 3vw, 36px);
+  align-items: stretch;
+  margin-top: 4px;
+}
+
+.tour-detail__extras .meeting-map {
+  margin-top: 0;
+  height: 100%;
+  border-top: 4px solid #df6049;
+  border-radius: 10px;
+  box-shadow: 0 18px 45px rgba(36, 72, 68, 0.09);
+}
+
 .stats {
   display: flex;
   flex-wrap: wrap;
@@ -478,13 +509,18 @@ h4 {
 
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  height: 100%;
 }
 
 .info-list {
-  padding: 16px;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(36, 72, 68, 0.06);
   background: #fff0d1;
 }
 
@@ -763,6 +799,11 @@ blockquote footer span {
 @media (max-width: 920px) {
   .nav {
     align-items: flex-start;
+    justify-content: center;
+  }
+
+  .nav__brand {
+    transform: translateY(18px);
   }
 
   .nav__links {
@@ -773,6 +814,7 @@ blockquote footer span {
   .hero__content,
   .tour-tabs,
   .tour-detail,
+  .tour-detail__extras,
   .info-grid,
   .about,
   .contact,
@@ -811,7 +853,7 @@ blockquote footer span {
   }
 
   .hero__image {
-    object-position: 58% 74%;
+    object-position: 32% 90%;
   }
 
   .hero__content {
@@ -842,6 +884,14 @@ blockquote footer span {
   .button,
   .footer__links a {
     width: 100%;
+  }
+
+  .hero__actions {
+    align-items: center;
+  }
+
+  .hero__actions .button {
+    width: auto;
   }
 
   .section {

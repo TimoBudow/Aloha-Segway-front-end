@@ -7,8 +7,7 @@ export const site = {
   phone: "(808) 866-3120",
   email: "timo.budow@gmail.com",
   fareHarborUrl: "https://fareharbor.com/sidewalksurfingtours/",
-  instagramUrl: "https://instagram.com/",
-  facebookUrl: "https://facebook.com/",
+  instagramUrl: "https://instagram.com/alohasegway",
   tripadvisorUrl: "https://tripadvisor.com/",
   reviewSourceUrl: "https://fareharbor.com/sidewalksurfingtours/",
   heroImage:

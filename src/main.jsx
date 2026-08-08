@@ -74,7 +74,7 @@ function Hero() {
           <div className="hero__actions">
             <a className="button button--primary" href={site.fareHarborUrl}>
               <CalendarDays aria-hidden="true" />
-              <span>Book on FareHarbor</span>
+              <span>Book Here!</span>
             </a>
           </div>
         </div>
@@ -162,23 +162,19 @@ function TourDetails({ tour }) {
           </span>
         </div>
 
+        <div className="tour-detail__actions">
+          <a className="button button--primary" href={site.fareHarborUrl}>
+            <CalendarDays aria-hidden="true" />
+            <span>Book Now</span>
+          </a>
+        </div>
+      </div>
+      <div className="tour-detail__extras">
         <div className="info-grid">
           <InfoList title="Highlights" items={tour.highlights} />
           <InfoList title="What to Bring" items={tour.bring} />
         </div>
-
         <MeetingPointMap tour={tour} />
-
-        <div className="tour-detail__actions">
-          <a className="button button--primary" href={site.fareHarborUrl}>
-            <CalendarDays aria-hidden="true" />
-            <span>Book this route</span>
-          </a>
-          <a className="button button--secondary" href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}>
-            <Phone aria-hidden="true" />
-            <span>Call first</span>
-          </a>
-        </div>
       </div>
     </article>
   );
@@ -202,12 +198,6 @@ function MeetingPointMap({ tour }) {
           <span>Open map</span>
         </a>
       </div>
-      <iframe
-        title={`${tour.name} meeting point map`}
-        src={mapSrc}
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      />
       {tour.meetingImage && (
         <figure className="meeting-map__landmark">
           <img src={tour.meetingImage} alt={tour.meetingImageAlt} />
@@ -217,6 +207,12 @@ function MeetingPointMap({ tour }) {
           </figcaption>
         </figure>
       )}
+      <iframe
+        title={`${tour.name} meeting point map`}
+        src={mapSrc}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      />
     </div>
   );
 }
@@ -284,24 +280,15 @@ function Contact() {
     <section className="section contact" id="contact">
       <div>
         <p className="eyebrow">Contact us</p>
-        <h2>Ready when your vacation is.</h2>
+        <h2>Let us be your tour glide!!</h2>
         <p>
-          Book through FareHarbor for the official schedule, or reach out with route questions,
-          group-size questions, and weather-day details.
+          All bookings are made via Fareharbor.com. Check for schedules and availabilities.  
         </p>
       </div>
       <div className="contact__actions">
         <a className="button button--primary" href={site.fareHarborUrl}>
           <CalendarDays aria-hidden="true" />
           <span>Book on FareHarbor</span>
-        </a>
-        <a className="button button--secondary" href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}>
-          <Phone aria-hidden="true" />
-          <span>{site.phone}</span>
-        </a>
-        <a className="button button--secondary" href={`mailto:${site.email}`}>
-          <Mail aria-hidden="true" />
-          <span>Email the guide</span>
         </a>
       </div>
     </section>
@@ -326,9 +313,6 @@ function Footer() {
         </a>
         <a href={site.instagramUrl} aria-label="Instagram">
           <Instagram aria-hidden="true" />
-        </a>
-        <a href={site.facebookUrl} aria-label="Facebook">
-          <Facebook aria-hidden="true" />
         </a>
       </div>
     </footer>

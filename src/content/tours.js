@@ -1,7 +1,8 @@
 import alaMoanaTourImage from "../images/IMG_2742.jpeg";
-import diamondHeadTourImage from "../images/IMG_3597.jpeg";
+import diamondHeadTourImage from "../images/IMG_3585.jpeg";
 import historicDowntownTourImage from "../images/IMG_3586.jpeg";
 import downtownMeetingImage from "../images/IMG_3598.jpeg";
+import diamondHeadMeetingImage from "../images/IMG_3254.jpeg";
 
 export const tours = [
   {
@@ -10,13 +11,16 @@ export const tours = [
     name: "Diamond Head Area Tour",
     area: "",
     duration: "2 hours",
-    price: "$149",
+    price: "$149/person",
     image: diamondHeadTourImage,
     summary:
       "Explore the area around Diamond Head Crater, including beautiful parks and scenic ocean views.",
     details:
-      "Best for riders who want the postcard side of Honolulu: ocean light, crater silhouettes, and enough movement to feel like a proper outing.",
+      "",
     meetingPointQuery: "Honolulu Zoo, 151 Kapahulu Ave, Honolulu, HI",
+    meetingImage: diamondHeadMeetingImage,
+    meetingImageAlt: "Honolulu Zoo entrance with an Aloha Segway Tours Segway in front",
+    meetingImageCaption: "Meet us at the Honolulu Zoo entrance near the Segway.",
     bring: ["Comfortable shoes", "Water", "Helmets Provided"],
     highlights: ["Diamond Head Crater", "Ocean Views", "Neighborhood streets", "Kapiolani Park", "Leahi Beach Park", "Makalei Beach Park"],
   },
@@ -26,19 +30,18 @@ export const tours = [
     name: "Historic Downtown & Wall Art Tour",
     area: "",
     duration: "2 Hours",
-    price: "$149",
+    price: "$149/person",
     image: historicDowntownTourImage,
     summary:
-      "See all the historic landmarks in two hours.",
+      "See all the historic landmarks in two hours, including Historic Downtown Honolulu, Wall Art Streets, Chinatown, and Aloha Tower.",
     details:
       "",
     meetingPointQuery: "1011 Ala Moana Blvd, Honolulu, HI 96814",
     meetingImage: downtownMeetingImage,
     meetingImageAlt: "Aloha Segway Tours Segways lined up beneath the Honolulu Food Trucks sign",
     meetingImageCaption: "Look for the Honolulu Food Trucks sign and our lined-up Segways.",
-    bring: ["Closed-toe shoes", "Water", "Hat", "Phone/camera"],
-    hazards: ["Curbs", "Street crossings", "Uneven pavement", "Downtown traffic"],
-    highlights: ["Historic landmarks", "Civic buildings", "Shaded city streets"],
+    bring: ["Comfortable shoes", "Water", "Helmets Provided"],
+    highlights: ["Ali'iolani Hale", "Iolani Palace", "Mission Houses", "Kawaiaha'o Church", "Hawaii Theater", "Aloha Tower"],
   },
   {
     id: "magic-island",
@@ -46,15 +49,17 @@ export const tours = [
     name: "Magic Island & Ala Moana Tour",
     area: "",
     duration: "2 hours",
-    price: "$149",
+    price: "$149/person",
     image: alaMoanaTourImage,
     summary:
-      "A relaxed glide around Ala Moana and Magic Island with open park space, ocean views, and skyline photo stops.",
+      "Glide around Ala Moana Beach Park and Kaka'ako Waterfront Park and take in the beautiful ocean views.",
     details:
-      "A good fit for first-timers and mixed groups: calmer paths, wide views, and an easygoing route that still feels unmistakably Honolulu.",
-    meetingPointQuery: "Kewalo Basin Harbor, Honolulu, HI",
-    bring: ["Closed-toe shoes", "Hat", "Water", "Comfortable clothes"],
-    hazards: ["Shared park paths", "Pedestrians", "Uneven pavement", "Wet surfaces near the water"],
-    highlights: ["Magic Island paths", "Ala Moana views", "Oceanfront photo stops"],
+      "No hills. A great tour for first-time riders!",
+    meetingPointQuery: "1011 Ala Moana Blvd, Honolulu, HI 96814",
+    meetingImage: downtownMeetingImage,
+    meetingImageAlt: "Aloha Segway Tours Segways lined up beneath the Honolulu Food Trucks sign",
+    meetingImageCaption: "Look for the Honolulu Food Trucks sign and our lined-up Segways.",
+    bring: ["Comfortable shoes", "Water", "Helmets Provided"],
+    highlights: ["Kaka'ako Park lookout", "Point Panic", "Magic Island", "Ala Moana Beach"],
   },
 ];

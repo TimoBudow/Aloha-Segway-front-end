@@ -1,18 +1,18 @@
-import downtownGroupImage from "../images/IMG_0898.jpeg";
-import diamondHeadGroupImage from "../images/IMG_0547.jpeg";
+import downtownGroupImage from "../images/IMG_3602.jpeg";
+import diamondHeadGroupImage from "../images/IMG_3595.jpeg";
 import alaMoanaGroupImage from "../images/IMG_2742.jpeg";
-import waikikiBeachImage from "../images/IMG_4089.jpeg";
+import waikikiBeachImage from "../images/IMG_3592.jpeg";
 
 export const gallery = [
   {
     src: downtownGroupImage,
     alt: "Guests on personal transporters in front of the King Kamehameha statue and historic downtown Honolulu building",
-    caption: "Historic downtown stop near Iolani Palace",
+    caption: "Wall Art Streets of Kaka'ako",
   },
   {
     src: diamondHeadGroupImage,
-    alt: "Guests on personal transporters with Diamond Head and palm trees behind them",
-    caption: "Diamond Head views and palms",
+    alt: "Guests on personal transporters with Diamond Head behind them",
+    caption: "Diamond Head views",
   },
   {
     src: alaMoanaGroupImage,
@@ -21,7 +21,7 @@ export const gallery = [
   },
   {
     src: waikikiBeachImage,
-    alt: "Guest on a personal transporter by the Waikiki shoreline",
+    alt: "Guests on personal transporters by the Waikiki shoreline",
     caption: "Waterfront photo stop",
   },
 ];
