@@ -135,6 +135,42 @@ figcaption svg,
   font-weight: 700;
 }
 
+.language-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(255, 250, 240, 0.42);
+  border-radius: 999px;
+  background: rgba(25, 64, 66, 0.38);
+  backdrop-filter: blur(12px);
+}
+
+.language-toggle button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #fffaf0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.language-toggle__flag {
+  width: 24px;
+  height: 15px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(38, 51, 47, 0.18);
+}
+.language-toggle button.is-active { background: #fffaf0; color: #26332f; box-shadow: 0 4px 14px rgba(31, 41, 35, 0.16); }
+
 .nav__links a {
   opacity: 0.9;
   padding: 8px 0;
@@ -163,7 +199,43 @@ figcaption svg,
 .hero .eyebrow {
   color: #ffe0a6;
 }
+html[lang="ja"] {
+  font-family:
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    "YuGothic",
+    "Meiryo",
+    sans-serif;
+}
 
+html[lang="ja"] h1,
+html[lang="ja"] h2,
+html[lang="ja"] h3,
+html[lang="ja"] h4 {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    "YuMincho",
+    serif;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  word-break: normal;
+  overflow-wrap: normal;
+  line-break: strict;
+}
+
+html[lang="ja"] h2 {
+  font-size: clamp(1.9rem, 5vw, 4rem);
+  text-wrap: balance;
+}
+
+html[lang="ja"] .eyebrow {
+  letter-spacing: 0.08em;
+}
+
+html[lang="ja"] .tour-tab {
+  line-height: 1.45;
+}
 h1,
 h2,
 h3,
@@ -859,6 +931,9 @@ blockquote footer span {
   .hero__content {
     padding: 72px 0 80px;
   }
+
+  .nav { width: min(100% - 20px, 1120px); gap: 10px; }
+  .language-toggle button { justify-content: center; padding: 7px 9px; }
 
   h1 {
     font-size: clamp(4.5rem, 22vw, 6.6rem);
