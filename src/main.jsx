@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   ArrowRight,
@@ -20,61 +20,71 @@ import {
 import { site } from "./content/site";
 import { tours } from "./content/tours";
 import { gallery } from "./content/gallery";
+import { galleryJa, tourJa, uiEn, uiJa } from "./content/translations";
 import heroPostcardImage from "./images/IMG_3591.jpeg";
 import heroPostcardImageTwo from "./images/IMG_3597.jpeg";
 import logoImage from "./images/IMG_3455.jpeg";
 import "./styles.css";
 
 export function App() {
+  const [language, setLanguage] = useState("en");
   const [activeTour, setActiveTour] = useState(tours[0].id);
-  const selectedTour = tours.find((tour) => tour.id === activeTour) ?? tours[0];
+  const copy = language === "ja" ? uiJa : uiEn;
+  const localizedTours = language === "ja" ? tours.map((tour) => ({ ...tour, ...tourJa[tour.id] })) : tours;
+  const localizedGallery = language === "ja" ? gallery.map((image, index) => ({ ...image, alt: galleryJa[index][0], caption: galleryJa[index][1] })) : gallery;
+  const selectedTour = localizedTours.find((tour) => tour.id === activeTour) ?? localizedTours[0];
+
+  useEffect(() => { document.documentElement.lang = language; }, [language]);
 
   return (
     <main>
-      <Hero />
+      <Hero copy={copy} language={language} onLanguageChange={setLanguage} />
       <TourPicker
         activeTour={activeTour}
         onSelectTour={setActiveTour}
         selectedTour={selectedTour}
+        tours={localizedTours}
+        copy={copy}
       />
-      <About />
-      <Gallery />
-      <Contact />
-      <Footer />
+      <About copy={copy} />
+      <Gallery copy={copy} images={localizedGallery} />
+      <Contact copy={copy} />
+      <Footer copy={copy} />
     </main>
   );
 }
 
-function Hero() {
+function Hero({ copy, language, onLanguageChange }) {
   return (
     <section className="hero" id="top">
       <img className="hero__image" src={site.heroImage} alt="Waikiki shoreline and ocean water" />
       <div className="hero__shade" />
-      <nav className="nav" aria-label="Primary navigation">
+      <nav className="nav" aria-label={language === "ja" ? "メインナビゲーション" : "Primary navigation"}>
         <a className="nav__brand" href="#top">
           <img src={logoImage} alt={site.businessName} />
         </a>
         <div className="nav__links">
-          <a href="#tours">Tours</a>
-          <a href="#about">About</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#contact">Contact</a>
+          <a href="#tours">{copy.nav[0]}</a>
+          <a href="#about">{copy.nav[1]}</a>
+          <a href="#gallery">{copy.nav[2]}</a>
+          <a href="#contact">{copy.nav[3]}</a>
         </div>
+        <LanguageToggle language={language} onChange={onLanguageChange} />
       </nav>
 
       <div className="hero__content">
         <div>
-          <p className="eyebrow">{site.eyebrow}</p>
+          <p className="eyebrow">{copy.hero[0]}</p>
           <h1 aria-label={site.businessName}>
             {site.businessName.split(" ").map((word) => (
               <span key={word}>{word}</span>
             ))}
           </h1>
-          <p>{site.tagline}</p>
+          <p>{copy.hero[1]}</p>
           <div className="hero__actions">
             <a className="button button--primary" href={site.fareHarborUrl}>
               <CalendarDays aria-hidden="true" />
-              <span>Book Here!</span>
+              <span>{copy.hero[2]}</span>
             </a>
           </div>
         </div>
@@ -85,8 +95,8 @@ function Hero() {
               alt="Segway tour guests posing in front of Aloha Tower"
             />
             <figcaption>
-              <span>Wish you were here!</span>
-              <small>Aloha Tower</small>
+              <span>{copy.hero[3]}</span>
+              <small>{copy.hero[4]}</small>
             </figcaption>
           </figure>
           <figure className="hero-postcard hero-postcard--diamond-head">
@@ -95,8 +105,8 @@ function Hero() {
               alt="Segway tour guests with Diamond Head in the background"
             />
             <figcaption>
-              <span>Greetings from Honolulu</span>
-              <small>Diamond Head</small>
+              <span>{copy.hero[5]}</span>
+              <small>{copy.hero[6]}</small>
             </figcaption>
           </figure>
         </div>
@@ -106,18 +116,50 @@ function Hero() {
   );
 }
 
-function TourPicker({ activeTour, onSelectTour, selectedTour }) {
+function LanguageToggle({ language, onChange }) {
+  return (
+    <div className="language-toggle" role="group" aria-label="Language / 言語">
+      <button type="button" className={language === "en" ? "is-active" : ""} onClick={() => onChange("en")} aria-pressed={language === "en"} aria-label="View in English">
+        <FlagUnitedKingdom /><span className="language-toggle__label">EN</span>
+      </button>
+      <button type="button" className={language === "ja" ? "is-active" : ""} onClick={() => onChange("ja")} aria-pressed={language === "ja"} aria-label="日本語で表示">
+        <FlagJapan /><span className="language-toggle__label">日本語</span>
+      </button>
+    </div>
+  );
+}
+
+function FlagUnitedKingdom() {
+  return (
+    <svg className="language-toggle__flag" viewBox="0 0 60 36" aria-hidden="true">
+      <rect width="60" height="36" fill="#012169" />
+      <path d="M0 0 60 36M60 0 0 36" stroke="#fff" strokeWidth="8" />
+      <path d="M0 0 60 36M60 0 0 36" stroke="#c8102e" strokeWidth="4" />
+      <path d="M30 0v36M0 18h60" stroke="#fff" strokeWidth="12" />
+      <path d="M30 0v36M0 18h60" stroke="#c8102e" strokeWidth="7" />
+    </svg>
+  );
+}
+
+function FlagJapan() {
+  return (
+    <svg className="language-toggle__flag" viewBox="0 0 60 36" aria-hidden="true">
+      <rect width="60" height="36" fill="#fff" />
+      <circle cx="30" cy="18" r="10.8" fill="#bc002d" />
+    </svg>
+  );
+}
+
+function TourPicker({ activeTour, onSelectTour, selectedTour, tours, copy }) {
   return (
     <section className="section section--tours" id="tours">
       <div className="section__heading">
-        <p className="eyebrow">Pick your route</p>
-        <h2>Choose one of these tours...</h2>
-        <p>
-          * Each tour includes a lesson in riding a Segway safely.
-        </p>
+        <p className="eyebrow">{copy.tours[0]}</p>
+        <h2>{copy.tours[1]}</h2>
+        <p>{copy.tours[2]}</p>
       </div>
 
-      <div className="tour-tabs" role="tablist" aria-label="Available tours">
+      <div className="tour-tabs" role="tablist" aria-label={copy.tours[3]}>
         {tours.map((tour) => (
           <button
             key={tour.id}
@@ -133,16 +175,16 @@ function TourPicker({ activeTour, onSelectTour, selectedTour }) {
         ))}
       </div>
 
-      <TourDetails tour={selectedTour} />
+      <TourDetails tour={selectedTour} copy={copy} />
     </section>
   );
 }
 
-function TourDetails({ tour }) {
+function TourDetails({ tour, copy }) {
   return (
     <article className="tour-detail">
       <div className="tour-detail__media">
-        <img src={tour.image} alt={`${tour.name} route preview`} />
+        <img src={tour.image} alt={`${tour.name} ${copy.tours[4]}`} />
         <div className="tour-detail__badge">
           <span>{tour.duration}</span>
           <strong>{tour.price}</strong>
@@ -165,22 +207,22 @@ function TourDetails({ tour }) {
         <div className="tour-detail__actions">
           <a className="button button--primary" href={site.fareHarborUrl}>
             <CalendarDays aria-hidden="true" />
-            <span>Book Now</span>
+            <span>{copy.tours[5]}</span>
           </a>
         </div>
       </div>
       <div className="tour-detail__extras">
         <div className="info-grid">
-          <InfoList title="Highlights" items={tour.highlights} />
-          <InfoList title="What to Bring" items={tour.bring} />
+          <InfoList title={copy.tours[6]} items={tour.highlights} />
+          <InfoList title={copy.tours[7]} items={tour.bring} />
         </div>
-        <MeetingPointMap tour={tour} />
+        <MeetingPointMap tour={tour} copy={copy} />
       </div>
     </article>
   );
 }
 
-function MeetingPointMap({ tour }) {
+function MeetingPointMap({ tour, copy }) {
   const query = encodeURIComponent(tour.meetingPointQuery);
   const mapSrc = `https://maps.google.com/maps?q=${query}&z=17&output=embed`;
   const mapUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
@@ -190,12 +232,12 @@ function MeetingPointMap({ tour }) {
     <div className="meeting-map">
       <div className="meeting-map__heading">
         <div>
-          <h4>Meeting Point</h4>
+          <h4>{copy.tours[8]}</h4>
           <p>{meetingPoint}</p>
         </div>
         <a href={mapUrl} target="_blank" rel="noreferrer">
           <MapPin aria-hidden="true" />
-          <span>Open map</span>
+          <span>{copy.tours[9]}</span>
         </a>
       </div>
       {tour.meetingImage && (
@@ -208,7 +250,7 @@ function MeetingPointMap({ tour }) {
         </figure>
       )}
       <iframe
-        title={`${tour.name} meeting point map`}
+        title={`${tour.name} ${copy.tours[10]}`}
         src={mapSrc}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
@@ -233,16 +275,13 @@ function InfoList({ title, items, tone }) {
   );
 }
 
-function About() {
+function About({ copy }) {
   return (
     <section className="section about" id="about">
       <div className="about__copy">
-        <p className="eyebrow">Why a Segway tour?</p>
-        <h2>Skip the traffic and the hassle of parking. See everything up close on a Segway!</h2>
-        <p>
-          Different from a crowded tour bus, see the sights in the cool breeze and learn about 
-          Hawaiian history and culture.
-        </p>
+        <p className="eyebrow">{copy.about[0]}</p>
+        <h2>{copy.about[1]}</h2>
+        <p>{copy.about[2]}</p>
 
       </div>
       <div className="about__image">
@@ -252,15 +291,15 @@ function About() {
   );
 }
 
-function Gallery() {
+function Gallery({ copy, images }) {
   return (
     <section className="section gallery" id="gallery">
       <div className="section__heading">
-        <p className="eyebrow">Gallery</p>
-        <h2>Sun, streets, and salt air.</h2>
+        <p className="eyebrow">{copy.gallery[0]}</p>
+        <h2>{copy.gallery[1]}</h2>
       </div>
       <div className="gallery__grid">
-        {gallery.map((image) => (
+        {images.map((image) => (
           <figure key={image.src}>
             <img src={image.src} alt={image.alt} />
             <figcaption>
@@ -275,32 +314,30 @@ function Gallery() {
 }
 
 
-function Contact() {
+function Contact({ copy }) {
   return (
     <section className="section contact" id="contact">
       <div>
-        <p className="eyebrow">Contact us</p>
-        <h2>Let us be your tour glide!!</h2>
-        <p>
-          All bookings are made via Fareharbor.com. Check for schedules and availabilities.  
-        </p>
+        <p className="eyebrow">{copy.contact[0]}</p>
+        <h2>{copy.contact[1]}</h2>
+        <p>{copy.contact[2]}</p>
       </div>
       <div className="contact__actions">
         <a className="button button--primary" href={site.fareHarborUrl}>
           <CalendarDays aria-hidden="true" />
-          <span>Book on FareHarbor</span>
+          <span>{copy.contact[3]}</span>
         </a>
       </div>
     </section>
   );
 }
 
-function Footer() {
+function Footer({ copy }) {
   return (
     <footer className="footer">
       <div>
         <strong>{site.businessName}</strong>
-        <p>Small-group electric glide tours in Honolulu, Hawaii.</p>
+        <p>{copy.footer}</p>
       </div>
       <div className="footer__links">
         <a href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}>
@@ -311,8 +348,9 @@ function Footer() {
           <Mail aria-hidden="true" />
           <span>{site.email}</span>
         </a>
-        <a href={site.instagramUrl} aria-label="Instagram">
+        <a href={site.instagramUrl} target="_blank" rel="noreferrer" aria-label={`Instagram ${site.instagramHandle}`}>
           <Instagram aria-hidden="true" />
+          <span>{site.instagramHandle}</span>
         </a>
       </div>
     </footer>

@@ -8,6 +8,7 @@ export const site = {
   email: "timo.budow@gmail.com",
   fareHarborUrl: "https://fareharbor.com/sidewalksurfingtours/",
   instagramUrl: "https://instagram.com/alohasegway",
+  instagramHandle: "@alohasegway",
   tripadvisorUrl: "https://tripadvisor.com/",
   reviewSourceUrl: "https://fareharbor.com/sidewalksurfingtours/",
   heroImage:
