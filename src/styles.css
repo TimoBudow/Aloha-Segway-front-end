@@ -932,8 +932,37 @@ blockquote footer span {
     padding: 72px 0 80px;
   }
 
-  .nav { width: min(100% - 20px, 1120px); gap: 10px; }
-  .language-toggle button { justify-content: center; padding: 7px 9px; }
+  .nav {
+    width: min(100% - 20px, 1120px);
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .nav__brand {
+    width: 145px;
+    height: 58px;
+    flex: 0 1 145px;
+    transform: none;
+  }
+
+  .language-toggle {
+    flex: 0 0 auto;
+    padding: 3px;
+  }
+
+  .language-toggle button {
+    min-height: 34px;
+    justify-content: center;
+    gap: 4px;
+    padding: 5px;
+    font-size: 0.75rem;
+  }
+
+  .language-toggle__flag {
+    width: 20px;
+    height: 12px;
+  }
 
   h1 {
     font-size: clamp(4.5rem, 22vw, 6.6rem);
